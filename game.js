@@ -16,6 +16,7 @@ let topScore = localStorage.getItem("topScore") || 0;
 
 //? DOM'daki top-score degerini localStorage'den okuyarak guncelle.
 document.querySelector(".top-score").textContent = topScore;
+document.querySelector(".again-btn").disabled = true;
 
 //* CheckBtn basildiginda kontrolleri yap
 document.querySelector(".check-btn").addEventListener("click", () => {
@@ -31,6 +32,8 @@ document.querySelector(".check-btn").addEventListener("click", () => {
     msg.innerHTML = `Congrats You Win <i class="fa-solid fa-face-grin-hearts fa-2x"></i> `;
     body.className = "bg-success";
     document.querySelector(".check-btn").disabled = true;
+    document.querySelector(".again-btn").disabled = false;
+    document.querySelector(".guess-input").value = "";
     if (score > topScore) {
       // topScore = score;
 
@@ -53,6 +56,8 @@ document.querySelector(".check-btn").addEventListener("click", () => {
       document.querySelector(".secret-number").textContent = randomNumber;
       body.className = "bg-danger";
       document.querySelector(".check-btn").disabled = true;
+      document.querySelector(".again-btn").disabled = false;
+      document.querySelector(".guess-input").value = "";
     }
 
     document.querySelector(".score").textContent = score;
@@ -70,6 +75,7 @@ document.querySelector(".again-btn").addEventListener("click", () => {
   document.querySelector("body").classList.remove("bg-success", "bg-danger");
   document.querySelector(".guess-input").value = "";
   document.querySelector(".msg").innerText = `Starting..`;
+  document.querySelector(".again-btn").disabled = true;
 });
 
 document.querySelector(".guess-input").addEventListener("keydown", (e) => {
